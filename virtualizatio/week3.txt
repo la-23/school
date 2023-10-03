@@ -1,0 +1,30 @@
+vmcx bestand bevat info over de vm
+
+als uw posistion 0 of 1 voor de parameter is dan wilt het zeggen dat je parameter niet hoeft te gebuiken. je kunt dit op het internet vinden als je de parameter moet gebruiken of niet.
+
+
+maak een paritie op disk manafer op 2gb
+	mounten
+	new vhd
+	intialize
+	new simple vomume
+	do not assign eleet
+
+
+wanneer je vhdx groter maakt op powershell
+	maar dan ga je diskmanagen
+	dan expand je volume
+
+
+
+
+
+........................
+myfirstvm 
+
+oefening
+
+	voeg een nieuwe shijf toe aan myfirstvm van 100gb
+	maak hierop een partitie aan van 50gb
+	verklein de schijf van 100gb naar de minimale groote (50gb)
+

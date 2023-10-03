@@ -1,0 +1,2 @@
+enterpssesion -vmname "naaam"
+als ik op een andere computer wil inloggen als domeinadministrator dan moet je gwn DC-LO\administrator => wachtwoord : Server2022
