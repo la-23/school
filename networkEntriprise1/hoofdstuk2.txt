@@ -1,0 +1,94 @@
+bij loopback heb je maar 1 adress daarom is de subent 255.255.255.255
+als je aanpassing maakt op een router voor ospf dan moet je de aanpassing niet opniew doen op de andere router.
+
+
+
+			192.168.10.0/30
+
+														
+			seriele verbinding
+               r2-  -          -  - -------    - -  -r3
+		.1                                    .2
+
+
+network network address wildcard mask area area-id => wilt gewoon zeggen dat je bijvoorbeel op 192.168.10.0 netwerk een ospf gaat gebruiken 
+op die mannier weet de router in welke interface de die netwerk is zonder de interface integeven
+
+
+
+network => lsa packeten sturen of hello packeten sturen
+network => netwerken aankondigen aan uw buren
+
+als je maar bijvoorbeel op 1 interface ospf wilt aanzetten dan doe bij de netwerk commando de wildcard op 0.0.0.0
+
+
+
+
+                                                         10.1.1.1.12/30
+
+                                  10.1.1.4  /30
+            		         .5 -----------r1 .14------------------------r2   .13
+				                | .1
+
+                                      10.10.1.0 /24
+
+
+met passive interface moet je ospf packeten sturen naar die interfaces omdat er geen router word verwacht
+de tekening komt overeen wat je hebt geconfigureerd op de dia
+ethernetkabel is altijd broadcast
+een seriele verbinding is een point to point verbinding
+
+als je van broadcast naar point to point brengt dan doe je uw dr en bdr uit
+
+host route => route voor 1 ip address /32 
+
+multi acces : 
+	meerdere router
+	broadcast
+	dr => 224.0.0.5
+	drother => 224.0.0.6 alleen de dr en bdr luisteren op de 224.0.0.6
+
+show ip ospf interface ..... => op die manier kan je de rol van de router weten
+
+2waydrother => je bent een drother en uw neighbor is ook een drother
+full/dr uw neighbor is dr
+full/bdr uw neighbor is bdr
+full/drother us neigbor is een drother
+
+de prioriyovershrijd de router id om de dr te bepalen. de hoogste prioriteit beteken de dr . als de prioriteit 0 is dan word het geen dr. als de pritoriteit het zelfde is overal dan word de hoogste router id de dr
+
+
+
+cost =  refrence bandwith / interface bandwidht
+
+ip ospf cost kun je de kost zelf aanpassen. je gebruikt als er een iest mis met verbinding bv tussen r1 en r2 dan kun je de hoger maken waardoor ospf een pad moet maken
+
+cost van een loopback interface is 1
+metric is de cost
+wanneer je show ip route doen en er 0 in de routering tabel dat wilt zeggen dat je ospf gebruikt om naar die netwerk te gaan
+
+als je procces id van ospf veranderd => dan ga je alles opnieuw doen ook neighbors opnieuw alles terug opnieuw deoen
+
+dead timer kijkt of de router aanwezig en ze weten dat pass wanneer de deadtimer packet terug stuurt binne 40 seconden
+dead timer is 4 keer de hello timer
+
+hello en deatimer worden geconfigurreerd op interface niveau
+
+tips bij trouble shooten :
+	kijk uw neighbors
+	kijk of multi acces of point to points
+		als het mult acces dan kijk je bdr en dr
+	kijk uw hello en dead timers
+
+
+examenvragen :
+	teken een multiacces omgeving
+	ospf oefening => 2 router geen adjecensies : dead hello staan niet gelijk waardoor adjecency niet gaat werken dus bv op router 1 en 2 moet je dezelde hello en dead timer 	heben.
+	
+	
+
+
+
+
+
+

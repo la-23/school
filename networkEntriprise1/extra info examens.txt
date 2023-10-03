@@ -1,0 +1,5 @@
+ospf veel configuratie
+chapter 3 is puur theorie
+chapter 2 , chapter 4 acl  en chap5 acl configuren  en chap 6 nat zijn de moelijkste onderdelen
+
+chapter 7-10 is theorie en hoofstuk 10 gaat op project komen

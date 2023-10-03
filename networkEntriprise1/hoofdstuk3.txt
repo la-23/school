@@ -1,0 +1,26 @@
+current state of cyber security
+	assets= value
+	vulnerability = weakness
+	threat = danger
+	exploit = takes advantage of vulnerbility
+	mititgation = counter measure
+	risk = probility of occourence (wat is de risico dat iemand dat gaat misbruiken)
+
+attack kunnen van buiten en van binnen komen
+
+data loss gevolgen:
+	loss of customers
+	loss of  revenue
+	...
+data loss vectors : 
+	email/social networking
+	unencrypted devices
+	cloud storage devices
+	removable media
+	hard copy
+	improper acces control
+
+threat actor
+	white hat hackers : vulnerbulity opzoeken en reporteren 
+	gray hat hackers : tussen de white hat hacker en black hat hacker 
+	black hat hackers :  doelbewust dingen saborteren 
