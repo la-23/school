@@ -1,0 +1,84 @@
+script:
+	is backword en forward compatible
+	textbased
+vershil script en programma 
+	script is vooral kleiner en vaak spcifieker
+
+automation:
+automatisch infrastructuur opzetten , te configureren en monitoren
+
+infrasturcture as a code:
+	beschrijving van de verwachte infrastuctuur in text file
+het automation frameword de de res
+
+
+wat is powershell
+	een objectgeorienteerde shell en scriptaal voor microsoft
+	een cli windows administration platform
+		cli en .net framework
+	werkt met .net objecten
+	ingebouwde get-help
+
+powerhel 1.0,5.1,6.0,7.x
+
+powerhell 1.0-5.1 
+	windows only,.net framework,default
+powershell6-7 
+	.net core,windows,linux,macos,can be download
+
+$psversiontable => statusgegevens worden opgeslagen
+
+
+package managers
+	een tool of verzameling softwaretools
+	automatiseren van software installaties
+	werkt in scripts
+
+
+tools:winget 
+	pros 
+		oficieel, open source,herkent geinstalleerd software op je systeem
+	con
+		under construction, weinig software, geen dependency,werkt niet op 		oudere versie
+	commands
+		je kunt de laatste release op github vinden
+		winget search
+		winget upgrade
+
+tools choclatey
+	meest gebruikte windows package manager
+	pro
+		werkt op meer windows platform
+		open source,meer softwarendooede dependency support,meer ondersteuning
+	con
+		kent enkel software geinstaleerd via chocolatey
+	
+linux tool voor windows
+	curl,which, grep , make
+	iwr 
+
+windows terminal als console :
+	moderen terminalaplicatie van microsoft voor gebruiker van commandline tools en shells zoal powershel, wsl
+	belangrijkste functies : meerdere tabladen,unicode en utf8 karaketer ondersteuning,
+	via winget en choco kun je microsoft terminal downloaden
+	
+
+service : een programma dat in het achtegrond draaid word beheerd door een service controller
+
+object
+	is een stuk data dat in de computergeheugen zit
+		die heeft een property
+		en heeft een methode
+get-member = geeft de properties en methodes
+
+get-service -name w32time | get-member | findstr "Method"
+
+of
+get-service -name w32time | get-member -membertype "Method"
+
+om een method te gebuiken zo je eerst zoeken welke methodes er allemaal zijn van die object en dan kies je welke je nodig en voer je die uit :
+	get-service -name w32time | get-member -membertype "Method"
+	(get-service -name w32time).start()
+
+suspent-service = pauzeert
+
