@@ -18,6 +18,21 @@ spanning-tree mode rapid-pvst
 spanning-tree extend system-id
 spanning-tree vlan 10,20,30,40,50,60,80 priority 61440
 !
+vlan 10
+name Management
+vlan 20
+name VM-Hosts
+vlan 30
+name Appliance-Servers
+vlan 40
+name Data-Users
+vlan 50
+name Voice-users
+vlan 60
+name Wireless-Users
+vlan 80 
+name Acces-points
+!
 interface GigabitEthernet0/0
  vrf forwarding Mgmt-vrf
  no ip address
@@ -165,7 +180,12 @@ interface Vlan10
  ip address 172.16.1.4 255.255.255.240
 !
 ip default-gateway 172.16.1.1
-
+!
+crypto key generate rsa general-keys modulus 2046
+ip ssh version 2
+enable secret cisco
+!
+username admin secret cisco
 banner motd #Authorized Acces Only#
 !
 line con 0
