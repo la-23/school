@@ -1,0 +1,155 @@
+Building configuration...
+
+service password-encryption
+!
+hostname LAB-R01-C01-R01
+!
+
+!
+no ip domain lookup
+ip domain name data.labnet.local
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+!
+!
+interface GigabitEthernet0/0/0
+ description Connection to Switch
+ no ip address
+ negotiation auto
+ no shutdown
+!
+interface GigabitEthernet0/0/0.10
+ encapsulation dot1Q 10
+ ip address 172.16.1.2 255.255.255.240
+ standby 10 ip 172.16.1.1
+ standby 10 priority 255
+ standby 10 preempt
+ ip ospf 10 area 0
+!
+interface GigabitEthernet0/0/0.20
+ encapsulation dot1Q 20
+ ip address 172.16.1.18 255.255.255.240
+ standby 20 ip 172.16.1.17
+ standby 20 priority 255
+ standby 20 preempt
+ ip ospf 10 area 0
+!
+interface GigabitEthernet0/0/0.30
+ encapsulation dot1Q 30
+ ip address 172.16.1.34 255.255.255.240
+ standby 30 ip 172.16.1.33
+ standby 30 priority 255
+ standby 30 preempt
+ ip ospf 10 area 0
+!
+interface GigabitEthernet0/0/0.40
+ encapsulation dot1Q 40
+ ip nat inside
+ ip address 172.16.1.50 255.255.255.240
+ ip helper-address 10.199.64.66
+ standby 40 ip 172.16.1.49
+ standby 40 priority 255
+ standby 40 preempt
+ ip ospf 10 area 0
+!
+interface GigabitEthernet0/0/0.50
+ encapsulation dot1Q 50
+ ip address 172.16.1.66 255.255.255.240
+ standby 50 ip 172.16.1.65
+ standby 50 priority 255
+ standby 50 preempt
+ ip ospf 10 area 0
+!
+interface GigabitEthernet0/0/0.60
+ encapsulation dot1Q 60
+ ip address 172.16.1.82 255.255.255.240
+ standby 60 ip 172.16.1.81
+ standby 60 priority 255
+ standby 60 preempt
+ ip ospf 10 area 0
+!
+interface GigabitEthernet0/0/0.80
+ encapsulation dot1Q 80
+ ip address 172.16.1.114 255.255.255.240
+ standby 80 ip 172.16.1.113
+ standby 80 priority 255
+ standby 80 preempt
+ ip ospf 10 area 0
+!
+interface GigabitEthernet0/0/1
+ description ConnectionToRack
+ ip address 10.199.66.101 255.255.255.224
+ ip ospf 10 area 0
+ ip nat outside
+ ip access-group Management-ACL in
+ negotiation auto
+ no shutdown
+!
+interface Serial0/1/0
+ no ip address
+ shutdown
+!
+interface Serial0/1/1
+ no ip address
+ shutdown
+!
+router ospf 10
+ router-id 10.199.66.101
+ passive-interface GigabitEthernet0/0/0.10
+ passive-interface GigabitEthernet0/0/0.20
+ passive-interface GigabitEthernet0/0/0.30
+ passive-interface GigabitEthernet0/0/0.40
+ passive-interface GigabitEthernet0/0/0.50
+ passive-interface GigabitEthernet0/0/0.60
+ passive-interface GigabitEthernet0/0/0.80
+!
+!
+ip http server
+ip http authentication local
+ip http secure-server
+ip forward-protocol ndconf
+#moet wan ip van uw router interface gi0/0/01
+ip nat pool pool-1 10.199.66.101 10.199.66.101 netmask 255.255.255.224 
+ip nat inside source list 1 pool pool-1 overload
+ip ssh version 2
+!
+!
+ip access-list standard 1
+ 10 permit 172.16.1.48 0.0.0.15
+!
+ip access-list extended Management-ACL
+ permit tcp host 10.199.66.100 172.16.1.0 0.0.0.15 eq 22
+ permit tcp 172.16.1.128 0.0.0.15 172.16.1.0 0.0.0.15 eq 22
+ permit ip any any
+!
+banner motd #authorized access only!!#
+!
+crypto key generate rsa general-keys modulus 2046
+ip ssh version 2
+!
+enable secret cisco
+!
+username admin secret cisco
+!
+banner motd ^CAuthorized access only^C
+!
+line con 0
+ password cisco
+ login
+ transport input none
+ stopbits 1
+line aux 0
+ stopbits 1
+line vty 0 4
+ access-class Management-ACL in
+ login local
+ transport input ssh
+line vty 5 15
+ access-class Management-ACL in
+ login local
+ transport input ssh
+!
+!
